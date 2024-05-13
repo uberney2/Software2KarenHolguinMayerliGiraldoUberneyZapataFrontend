@@ -1,0 +1,27 @@
+.grid-item{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    cursor: pointer;
+    margin: 2px;
+}
+.grid-item:hover{
+    border-radius: 5px;
+    background: rgb(255,255,255);
+    background: linear-gradient(30deg, rgba(255,255,255,1) 0%, rgba(254,237,230,1) 95%);
+}
+
+.information-item{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.tags{
+    margin-top: -12px;
+}
+
+.container-tags{
+    font-style: italic;
+    display:flex;
+    gap: 5px;
+}
