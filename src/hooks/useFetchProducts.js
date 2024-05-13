@@ -1,12 +1,15 @@
 import {useEffect, useState} from 'react'
 import {getProducts} from '../services/getProducts'
+import { useAuth } from '../components/auth/AuthProvider';
 
 export const useFetchProducts = () => {
     const[products, setProducts] = useState([]);
     const[isLoading, setIsLoading] = useState(true); 
+    const auth = useAuth();
 
     const getAllProducts = async () => {
-        const products = await getProducts();
+        const token = auth.getToken();
+        const products = await getProducts(token);
         setProducts(products);
         setIsLoading(false);
     }

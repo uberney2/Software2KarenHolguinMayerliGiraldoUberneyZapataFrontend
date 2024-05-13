@@ -1,11 +1,10 @@
-import {ProductGrid} from '../../components/productGrid/ProductGrid'
+import { NavbarComponent } from "../../components/navbar/NavbarComponent";
+import { ProductGrid } from "../../components/productGrid/ProductGrid";
 
 export const Home = () => {
   return (
-    <div>
-      <ProductGrid/>
-      
-    </div>
-  )
-}
-
+    <NavbarComponent>
+      <ProductGrid />
+    </NavbarComponent>
+  );
+};
