@@ -3,6 +3,7 @@ import { NavbarComponent } from "../../components/navbar/NavbarComponent";
 import { useAuth } from "../../components/auth/AuthProvider";
 import { Navigate, useNavigate } from "react-router-dom";
 import { LogIn } from "../../services/logIn";
+import './Login.css'
 
 export const Login = () => {
   const [name, setName] = useState('');
@@ -40,7 +41,7 @@ export const Login = () => {
   }
   return (
     <NavbarComponent>
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <h1>Login</h1>
         {
           !!errorResponse && <p>{errorResponse}</p>
