@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { NavbarComponent } from "../../components/navbar/NavbarComponent";
-import { useFetchProductsDetails } from "../../hooks/useFetchProductsDetails";
-import { Star } from "../../components/star-rating/StarRating";
+import { NavbarComponent } from "../../../components/navbar/NavbarComponent";
+import { useFetchProductsDetails } from "../../../hooks/useFetchProductsDetails";
+import { Star } from "../../../components/star-rating/StarRating";
 import "./ProductDetail.css";
 
 export const ProductDetail = () => {
