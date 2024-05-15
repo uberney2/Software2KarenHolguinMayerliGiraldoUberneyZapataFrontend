@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import "./ProductGridItem.css";
 
-export const ProductGridItem = ({ name, description, tags, _id }) => {
+export const ProductGridItem = ({ name, description, image, tags, _id }) => {
   return (
     <div className="product-grid-item">
+      <div>
+        <img src={image}/>
+      </div>
       <Link className="product-link" to={`/product-detail/${_id}`}>
         <div className="product-info">
           <h3 className="product-name">{name}</h3>

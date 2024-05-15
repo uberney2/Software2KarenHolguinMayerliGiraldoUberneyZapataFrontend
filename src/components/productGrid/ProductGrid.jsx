@@ -7,7 +7,6 @@ export const ProductGrid = () => {
 
   return (
     <div className="product-grid">
-      <h3 className="product-grid-title">Products</h3>
       <div className="product-grid-container">
         {isLoading ? (
           <p>Loading...</p>

@@ -41,10 +41,10 @@ export const NavbarComponent = ({ children }) => {
             <div className="menu">
               <ul className="nav-links">
                 <li>
-                  <a href="#">Inicio</a>
+                <Link to="/home">Inicio</Link>
                 </li>
                 <li>
-                  <a href="#">Productos</a>
+                  <a href="#">Mis Productos</a>
                 </li>
                 <li>
                   <a href="#">Servicios</a>
