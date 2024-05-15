@@ -3,6 +3,7 @@ import { NavbarComponent } from "../../components/navbar/NavbarComponent";
 import { useAuth } from "../../components/auth/AuthProvider";
 import { Navigate, useNavigate } from "react-router-dom";
 import { registerUser } from "../../services/registerUser";
+import './Signup.css'
 
 
 export const SignUp = () => {
@@ -48,7 +49,7 @@ export const SignUp = () => {
 
   return (
     <NavbarComponent>
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <h1>SignUp</h1>
         {
           !!errorResponse && <p>{errorResponse}</p>

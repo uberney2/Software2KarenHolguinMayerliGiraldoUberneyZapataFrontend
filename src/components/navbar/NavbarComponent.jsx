@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { useAuth } from "../auth/AuthProvider";
 
 export const NavbarComponent = ({ children }) => {
+
+  const auth = useAuth();
   return (
     <>
       <header>
@@ -26,36 +29,43 @@ export const NavbarComponent = ({ children }) => {
                 </g>
               </svg>
             </a>
-            <input className="search"></input>
+            {
+              auth.isAuthenticated && (
+                <input className="search"></input>
+              )
+            }
+            
           </div>
 
-          <div className="menu">
-            <ul className="nav-links">
-              <li>
-                <a href="#">Inicio</a>
-              </li>
-              <li>
-                <a href="#">Productos</a>
-              </li>
-              <li>
-                <a href="#">Servicios</a>
-              </li>
-              <li>
-                <a href="#">Contacto</a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="login">
-            <ul className="nav-links">
-              <li>
-                <Link to="/">login</Link>
-              </li>
-              <li>
-                <Link to="/singup">SingUp</Link>
-              </li>
-            </ul>
-          </div>
+          {auth.isAuthenticated ? (
+            <div className="menu">
+              <ul className="nav-links">
+                <li>
+                <Link to="/home">Inicio</Link>
+                </li>
+                <li>
+                  <a href="#">Mis Productos</a>
+                </li>
+                <li>
+                  <a href="#">Servicios</a>
+                </li>
+                <li>
+                  <a href="#">Contacto</a>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <div className="login">
+              <ul className="nav-links">
+                <li>
+                  <Link to="/">login</Link>
+                </li>
+                <li>
+                  <Link to="/signup">SignUp</Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </nav>
       </header>
 

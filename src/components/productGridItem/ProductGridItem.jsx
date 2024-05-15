@@ -1,18 +1,25 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import "./ProductGridItem.css";
 
-export const ProductGridItem = ({ name, description, tags }) => {
+export const ProductGridItem = ({ name, description, image, tags, _id }) => {
   return (
-    <div className="grid-item">
-      <div className="information-item">
-        <h3>{name}</h3>
-        <h5>{description}</h5>
+    <div className="product-grid-item">
+      <div>
+        <img src={image}/>
       </div>
-      <div className="container-tags">
-        {tags.map((tag) => (
-          <h6 className="tags">{tag}</h6>
-        ))}
-      </div>
+      <Link className="product-link" to={`/product-detail/${_id}`}>
+        <div className="product-info">
+          <h3 className="product-name">{name}</h3>
+          <p className="product-description">{description}</p>
+          <div className="product-tags">
+            {tags.map((tag, index) => (
+              <span className="product-tag" key={index}>
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </Link>
     </div>
   );
 };

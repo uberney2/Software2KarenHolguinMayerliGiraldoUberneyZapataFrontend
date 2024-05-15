@@ -1,23 +1,21 @@
-import {useFetchProducts} from '../../hooks/useFetchProducts';
-import {ProductGridItem} from '../productGridItem/ProductGridItem'
-import './ProductGrid.css'
+import { useFetchProducts } from "../../hooks/useFetchProducts";
+import { ProductGridItem } from "../productGridItem/ProductGridItem";
+import "./ProductGrid.css";
+
 export const ProductGrid = () => {
-    const {products, isLoading} = useFetchProducts()
-    console.log(products)
+  const { products, isLoading } = useFetchProducts();
+
   return (
-   <>
-        <h3>Products</h3>
-        <div className='grid'>
-            {
-                products.map(product => (
-                    <ProductGridItem
-                    key={product.id}
-                    {...product}/>
-                ))
-            }
-        </div>
-   </>
-  )
-}
-
-
+    <div className="product-grid">
+      <div className="product-grid-container">
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          products.map((product) => (
+            <ProductGridItem key={product._id} {...product} />
+          ))
+        )}
+      </div>
+    </div>
+  );
+};

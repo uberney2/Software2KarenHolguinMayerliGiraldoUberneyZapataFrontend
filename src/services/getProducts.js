@@ -21,3 +21,27 @@ export const getProducts = async (token) => {
         throw error; 
     }
 };
+
+export const getProductsDetails = async (idProduct, token) => {
+    const url = `http://localhost:3000/api/product/productDetails/${idProduct}`;
+    
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `${token}`
+        }
+    };
+
+    try {
+        const resp = await fetch(url, requestOptions);
+        if (!resp.ok) {
+            throw new Error('Failed to fetch products');
+        }
+        const { product } = await resp.json();
+        return product;
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        throw error; 
+    }
+};
