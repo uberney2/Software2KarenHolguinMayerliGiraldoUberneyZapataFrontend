@@ -7,7 +7,8 @@ import { SignUp } from "./pages/SingUp/SignUp.jsx";
 import { Login } from "./pages/login/Login.jsx";
 import { ProtectedRoute } from "./services/ProtectedRoute";
 import { AuthProvider } from "./components/auth/AuthProvider.jsx";
-import { ProductDetail } from "./pages/product/ProductDetail.jsx";
+import { ProductDetail } from "./pages/product/ProductDetail/ProductDetail.jsx";
+import { CreateProduct } from "./pages/product/CreateProduct/CreateProduct.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         path: "/product-detail/:id",
         element: <ProductDetail />,
       },
+      {
+        path: "/create-product",
+        element: <CreateProduct />,
+      }
     ],
   },
 ]);

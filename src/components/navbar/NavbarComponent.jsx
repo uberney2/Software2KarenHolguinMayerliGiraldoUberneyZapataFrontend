@@ -3,7 +3,6 @@ import "./Navbar.css";
 import { useAuth } from "../auth/AuthProvider";
 
 export const NavbarComponent = ({ children }) => {
-
   const auth = useAuth();
   return (
     <>
@@ -29,25 +28,20 @@ export const NavbarComponent = ({ children }) => {
                 </g>
               </svg>
             </a>
-            {
-              auth.isAuthenticated && (
-                <input className="search"></input>
-              )
-            }
-            
+            {auth.isAuthenticated && <input className="search"></input>}
           </div>
 
           {auth.isAuthenticated ? (
             <div className="menu">
               <ul className="nav-links">
                 <li>
-                <Link to="/home">Inicio</Link>
+                  <Link to="/home">Inicio</Link>
                 </li>
                 <li>
                   <a href="#">Mis Productos</a>
                 </li>
                 <li>
-                  <a href="#">Servicios</a>
+                  <Link to="/create-product">Crear Producto</Link>
                 </li>
                 <li>
                   <a href="#">Contacto</a>
