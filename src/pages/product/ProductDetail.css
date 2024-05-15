@@ -1,0 +1,97 @@
+/* ProductDetail.css */
+
+.product-detail-container {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .product-info {
+    flex: 1;
+  }
+  
+  .product-name {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .product-description {
+    font-size: 18px;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .product-image-container {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .product-image {
+    width: 100%;
+    display: block;
+  }
+  
+  .product-details {
+    margin-top: 20px;
+  }
+  
+  .product-price {
+    font-size: 24px;
+    color: #007bff;
+  }
+  
+  .product-rating {
+    font-size: 18px;
+    color: #777;
+    margin-top: 10px;
+  }
+  
+  .product-link {
+    display: inline-block;
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  
+  .comments-container {
+    flex: 1;
+  }
+  
+  .comments-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .comments-list {
+    margin-top: 20px;
+  }
+  
+  .comment {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment-user {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .comment-content {
+    font-size: 16px;
+    color: #777;
+    margin-top: 10px;
+  }
+  
+  .comment-rate {
+    font-size: 16px;
+    color: #777;
+  }
+  
