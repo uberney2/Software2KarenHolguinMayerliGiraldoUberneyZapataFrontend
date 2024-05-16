@@ -3,14 +3,23 @@ import { NavbarComponent } from "../../components/navbar/NavbarComponent";
 import { useAuth } from "../../components/auth/AuthProvider";
 import { useFetchFollow } from '../../hooks/useFetchFollow';
 import "./UserProfile.css";
+import { useEffect, useState } from "react";
+import { followUser } from "../../services/followUser";
 
 export const UserProfile = () => {
   const { id } = useParams();
   const location = useLocation();
   const auth = useAuth();
   const userInfo = auth.getUserInfo();
-  const { followers, followings } = useFetchFollow(id);
+  const { followers, followings, refetchFollowers, isFollowing } = useFetchFollow(id, auth.getUserInfo()._id);
   const user = location.state?.user || {};
+
+  const handleClick = async (e) =>{
+    e.preventDefault();
+    const token = auth.getToken()
+    const res = await followUser(token, {id})
+    refetchFollowers();
+  }
 
   return (
     <NavbarComponent>
@@ -28,7 +37,7 @@ export const UserProfile = () => {
         <div className="profile-info">
           <div className="profile-stats">
             <div className="profile-stat">
-              <span className="stat-label">Followers</span>
+              <span className="stat-label">followers</span>
               <span className="stat-value">{followers?.length}</span>
             </div>
             <div className="profile-stat">
@@ -36,7 +45,12 @@ export const UserProfile = () => {
               <span className="stat-value">{followings?.length}</span>
             </div>
           </div>
-          {id !== userInfo._id && <button className="follow-button">Follow</button>}
+          {id !== userInfo._id && !isFollowing && (
+            <button className="follow-button" onClick={handleClick}>Follow</button>
+          )}
+          {id !== userInfo._id && isFollowing && (
+            <button className="followed-button" disabled>Following</button>
+          )}
         </div>
       </div>
       <div>

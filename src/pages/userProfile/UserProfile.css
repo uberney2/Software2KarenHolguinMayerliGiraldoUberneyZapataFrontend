@@ -65,8 +65,48 @@
     font-size: 16px;
     transition: background-color 0.3s ease;
   }
-  
+ 
   .follow-button:hover {
     background-color: #0056b3;
   }
+
+  .followed-button {
+    position: relative;
+    padding: 10px 20px;
+    background-color: #fcfcfc;
+    color: #d86161;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+    border: 1px solid transparent;
+    
+  }
+
+  .followed-button::after {
+    content: "Unfollow"; /* Nuevo texto que aparecerá en hover */
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #feb6b0; /* Color de fondo al hacer hover */
+    color: #7f1d1d; /* Color del texto al hacer hover */
+    line-height: 42px; /* Ajusta la línea a la altura del botón para centrar verticalmente el texto */
+    text-align: center; /* Centra el texto horizontalmente */
+    border-radius: 5px; /* Mantiene el radio del borde del botón */
+    opacity: 0; /* Inicia invisible */
+    transition: opacity 0.3s ease; /* Transición suave para la opacidad */
+  }
+  
+  .followed-button:hover::after {
+    opacity: 1; /* Hace visible el texto al hacer hover */
+  }
+  
+  .followed-button:hover {
+    color: transparent; /* Hace el texto original transparente para mostrar solo el texto del pseudoelemento */
+  }
+  
+
   
