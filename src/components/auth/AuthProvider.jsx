@@ -2,8 +2,9 @@ import { useContext, createContext, useEffect, useState } from "react";
 
 const AuthContext = createContext({
   isAuthenticated: false,
-  saveUser: (token) => {},
-  getToken: () => {}
+  saveUser: (userInfo) => {},
+  getToken: () => {},
+  getUserInfo: () => {}
 });
 
 export const AuthProvider = ({ children }) => {
@@ -24,8 +25,9 @@ export const AuthProvider = ({ children }) => {
 
   }
 
-  function saveUser(token){
-    localStorage.setItem("token", token);
+  function saveUser(userInfo){
+    localStorage.setItem("token", userInfo.token);
+    localStorage.setItem("userInfo", JSON.stringify(userInfo.user));
     setIsAuthenticated(true);
   }
 
@@ -35,11 +37,18 @@ export const AuthProvider = ({ children }) => {
         return token; 
     }
     return null
+  }
 
+  function getUserInfo(){
+    const userInfo = localStorage.getItem('userInfo');
+    if(userInfo){
+        return JSON.parse(userInfo); 
+    }
+    return null
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, saveUser, getToken}}>
+    <AuthContext.Provider value={{ isAuthenticated, saveUser, getToken, getUserInfo}}>
       {children}
     </AuthContext.Provider>
   );

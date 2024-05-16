@@ -3,11 +3,52 @@ import { NavbarComponent } from "../../../components/navbar/NavbarComponent";
 import { useFetchProductsDetails } from "../../../hooks/useFetchProductsDetails";
 import { Star } from "../../../components/star-rating/StarRating";
 import "./ProductDetail.css";
+import { useAuth } from "../../../components/auth/AuthProvider";
+import { useEffect, useState } from "react";
+import { createComment } from "../../../services/createComent";
 
 export const ProductDetail = () => {
   const { id } = useParams();
   const { product, isLoading } = useFetchProductsDetails(id);
   const { detailProduct, commentsProduct } = product || {};
+
+  const [comment, setComment] = useState("");
+  const [rating, setRating] = useState(0);
+  const [commentList, setCommentList] = useState(commentsProduct || [])
+  const auth = useAuth();
+
+  useEffect(() => {
+    if (commentsProduct) {
+      setCommentList(commentsProduct);
+    }
+  }, [commentsProduct]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const user = auth.getUserInfo();
+      const resp = await createComment(auth.getToken(), {
+        productId: id,
+        userId: user._id,
+        comment,
+        rate: rating,
+      });
+
+      console.log(resp)
+
+      if (resp.ok) {
+        setComment("");
+        setRating(0);
+        setCommentList([...commentList, {content: comment, userId: {userName: user.userName}, rate:rating}])
+        console.log(commentList)
+
+      } else {
+        console.error("Error al enviar el comentario");
+      }
+    } catch (error) {
+      console.error("Error al enviar el comentario:", error);
+    }
+  };
 
   const renderStars = (rating) => {
     const stars = [];
@@ -68,7 +109,7 @@ export const ProductDetail = () => {
           <div className="comments-container">
             <h2 className="comments-title">Customer Reviews</h2>
             <div className="comments-list">
-              {commentsProduct?.map((comment, index) => (
+              {commentList?.map((comment, index) => (
                 <div className="comment" key={index}>
                   <p className="comment-user">By: {comment.userId.userName}</p>
                   <p className="comment-content">{comment.content}</p>
@@ -76,6 +117,36 @@ export const ProductDetail = () => {
                 </div>
               ))}
             </div>
+          </div>
+          <div className="add-comment-container">
+            <h2 className="add-comment-title">Leave a Review</h2>
+            <form onSubmit={handleSubmit} className="add-comment-form">
+              <textarea
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Write your comment"
+                className="comment-textarea"
+                required
+              />
+              <div className="rating-input">
+                <label>Rating:</label>
+                <select
+                  value={rating}
+                  onChange={(e) => setRating(Number(e.target.value))}
+                  required
+                >
+                  <option value="">Select</option>
+                  {[1, 2, 3, 4, 5].map((rate) => (
+                    <option key={rate} value={rate}>
+                      {rate}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <button type="submit" className="submit-button">
+                Submit
+              </button>
+            </form>
           </div>
         </div>
       </div>

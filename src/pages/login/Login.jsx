@@ -23,7 +23,7 @@ export const Login = () => {
       if(resp.ok){
         setErrorResponse("")
         const json = await resp.json();
-        auth.saveUser(json.token);
+        auth.saveUser(json.userInfo);
         goTo('/home');
       }else{
         console.log('Error en la creacion del usuario');
