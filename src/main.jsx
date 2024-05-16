@@ -9,6 +9,7 @@ import { ProtectedRoute } from "./services/ProtectedRoute";
 import { AuthProvider } from "./components/auth/AuthProvider.jsx";
 import { ProductDetail } from "./pages/product/ProductDetail/ProductDetail.jsx";
 import { CreateProduct } from "./pages/product/CreateProduct/CreateProduct.jsx";
+import { UserProfile } from "./pages/userProfile/UserProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/create-product",
         element: <CreateProduct />,
+      },
+      {
+        path: "/profile/:id",
+        element: <UserProfile />,
       }
     ],
   },

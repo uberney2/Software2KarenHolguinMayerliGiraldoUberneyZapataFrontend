@@ -4,6 +4,7 @@ import { useAuth } from "../auth/AuthProvider";
 
 export const NavbarComponent = ({ children }) => {
   const auth = useAuth();
+  const user = auth.getUserInfo();
   return (
     <>
       <header>
@@ -44,7 +45,7 @@ export const NavbarComponent = ({ children }) => {
                   <Link to="/create-product">Crear Producto</Link>
                 </li>
                 <li>
-                  <a href="#">Contacto</a>
+                <Link to={`/profile/${user._id}`}>Mi perfil</Link>
                 </li>
               </ul>
             </div>
