@@ -1,12 +1,12 @@
-export const getFollowings = async (token) => {
-    const url = 'http://localhost:3000/api/follow/followings';
+export const getFollowings = async (token, id) => {
+    const url = `http://localhost:3000/api/follow/followings/${id}`;
     
     const requestOptions = {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `${token}`
-        }
+        },
     };
 
     try {
