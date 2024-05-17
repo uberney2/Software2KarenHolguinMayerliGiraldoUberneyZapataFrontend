@@ -3,9 +3,10 @@ import { NavbarComponent } from "../../components/navbar/NavbarComponent";
 import { useAuth } from "../../components/auth/AuthProvider";
 import { useFetchFollow } from '../../hooks/useFetchFollow';
 import "./UserProfile.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { followUser } from "../../services/followUser";
 import { unFollowUser } from "../../services/unFollowUser";
+import { FollowersModal } from "../../components/followersModal/FollowersModal";
 
 export const UserProfile = () => {
   const { id } = useParams();
@@ -15,20 +16,38 @@ export const UserProfile = () => {
   const { followers, followings, refetchFollowers, isFollowing, unFollowedUser } = useFetchFollow(id, auth.getUserInfo()._id);
   const user = location.state?.user || {};
 
-  const handleClick = async (e) =>{
+  const [followersModalOpen, setFollowersModalOpen] = useState(false);
+  const [followingsModalOpen, setFollowingsModalOpen] = useState(false);
+
+  const handleClick = async (e) => {
     e.preventDefault();
-    const token = auth.getToken()
-    const res = await followUser(token, {id})
+    const token = auth.getToken();
+    await followUser(token, { id });
     refetchFollowers();
-  }
+  };
 
   const handleUnfollowClick = async (e) => {
     e.preventDefault();
-    const token = auth.getToken()
-    const res = await unFollowUser(token, {id})
+    const token = auth.getToken();
+    await unFollowUser(token, { id });
     refetchFollowers();
     unFollowedUser();
-  }
+  };
+
+  const handleOpenFollowersModal = () => {
+    setFollowersModalOpen(true);
+  };
+
+  const handleOpenFollowingsModal = () => {
+    setFollowingsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setFollowersModalOpen(false);
+    setFollowingsModalOpen(false);
+  };
+
+  const formattedFollowings = followings.map(following => following.followedUserId);
 
   return (
     <NavbarComponent>
@@ -45,11 +64,11 @@ export const UserProfile = () => {
         </div>
         <div className="profile-info">
           <div className="profile-stats">
-            <div className="profile-stat">
+            <div className="profile-stat" onClick={handleOpenFollowersModal}>
               <span className="stat-label">followers</span>
               <span className="stat-value">{followers?.length}</span>
             </div>
-            <div className="profile-stat">
+            <div className="profile-stat" onClick={handleOpenFollowingsModal}>
               <span className="stat-label">Following</span>
               <span className="stat-value">{followings?.length}</span>
             </div>
@@ -58,10 +77,22 @@ export const UserProfile = () => {
             <button className="follow-button" onClick={handleClick}>Follow</button>
           )}
           {id !== userInfo._id && isFollowing && (
-            <button className="followed-button"onClick={handleUnfollowClick}>Following</button>
+            <button className="followed-button" onClick={handleUnfollowClick}>Following</button>
           )}
         </div>
       </div>
+      <FollowersModal
+        isOpen={followersModalOpen}
+        onRequestClose={handleCloseModal}
+        title="Followers"
+        users={followers}
+      />
+      <FollowersModal
+        isOpen={followingsModalOpen}
+        onRequestClose={handleCloseModal}
+        title="Followings"
+        users={formattedFollowings}
+      />
       <div>
         <label>My Products</label>
       </div>
