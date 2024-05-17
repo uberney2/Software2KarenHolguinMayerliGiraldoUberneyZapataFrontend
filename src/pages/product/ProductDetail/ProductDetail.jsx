@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { NavbarComponent } from "../../../components/navbar/NavbarComponent";
 import { useFetchProductsDetails } from "../../../hooks/useFetchProductsDetails";
 import { Star } from "../../../components/star-rating/StarRating";
@@ -14,8 +14,9 @@ export const ProductDetail = () => {
 
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
-  const [commentList, setCommentList] = useState(commentsProduct || [])
+  const [commentList, setCommentList] = useState(commentsProduct || []);
   const auth = useAuth();
+  const user = auth.getUserInfo();
 
   useEffect(() => {
     if (commentsProduct) {
@@ -34,14 +35,20 @@ export const ProductDetail = () => {
         rate: rating,
       });
 
-      console.log(resp)
+      console.log(resp);
 
       if (resp.ok) {
         setComment("");
         setRating(0);
-        setCommentList([...commentList, {content: comment, userId: {userName: user.userName}, rate:rating}])
-        console.log(commentList)
-
+        setCommentList([
+          ...commentList,
+          {
+            content: comment,
+            userId: { userName: user.userName },
+            rate: rating,
+          },
+        ]);
+        console.log(commentList);
       } else {
         console.error("Error al enviar el comentario");
       }
@@ -111,7 +118,12 @@ export const ProductDetail = () => {
             <div className="comments-list">
               {commentList?.map((comment, index) => (
                 <div className="comment" key={index}>
-                  <p className="comment-user">By: {comment.userId.userName}</p>
+                  <Link
+                    to={`/profile/${comment.userId._id}`}
+                    state={{ user: comment.userId }}
+                  >
+                    By: {comment.userId.userName}
+                  </Link>
                   <p className="comment-content">{comment.content}</p>
                   <p className="comment-rate">Rating: {comment.rate}</p>
                 </div>
