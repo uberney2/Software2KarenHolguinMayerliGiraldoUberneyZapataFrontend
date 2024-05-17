@@ -1,25 +1,15 @@
-import {useEffect, useState} from 'react'
-import {getProducts} from '../services/getProducts'
-import { useAuth } from '../components/auth/AuthProvider';
+import { useEffect } from 'react';
+import { useProductContext } from '../context/ProductContext';
 
 export const useFetchProducts = () => {
-    const[products, setProducts] = useState([]);
-    const[isLoading, setIsLoading] = useState(true); 
-    const auth = useAuth();
+  const { products, isLoading, fetchProducts } = useProductContext();
 
-    const getAllProducts = async () => {
-        const token = auth.getToken();
-        const products = await getProducts(token);
-        setProducts(products);
-        setIsLoading(false);
-    }
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
 
-    useEffect(() => {
-        getAllProducts()
-    }, []);
-
-    return {
-        products,
-        isLoading
-    }
-}
+  return {
+    products,
+    isLoading,
+  };
+};
