@@ -5,13 +5,14 @@ import { useFetchFollow } from '../../hooks/useFetchFollow';
 import "./UserProfile.css";
 import { useEffect, useState } from "react";
 import { followUser } from "../../services/followUser";
+import { unFollowUser } from "../../services/unFollowUser";
 
 export const UserProfile = () => {
   const { id } = useParams();
   const location = useLocation();
   const auth = useAuth();
   const userInfo = auth.getUserInfo();
-  const { followers, followings, refetchFollowers, isFollowing } = useFetchFollow(id, auth.getUserInfo()._id);
+  const { followers, followings, refetchFollowers, isFollowing, unFollowedUser } = useFetchFollow(id, auth.getUserInfo()._id);
   const user = location.state?.user || {};
 
   const handleClick = async (e) =>{
@@ -19,6 +20,14 @@ export const UserProfile = () => {
     const token = auth.getToken()
     const res = await followUser(token, {id})
     refetchFollowers();
+  }
+
+  const handleUnfollowClick = async (e) => {
+    e.preventDefault();
+    const token = auth.getToken()
+    const res = await unFollowUser(token, {id})
+    refetchFollowers();
+    unFollowedUser();
   }
 
   return (
@@ -49,7 +58,7 @@ export const UserProfile = () => {
             <button className="follow-button" onClick={handleClick}>Follow</button>
           )}
           {id !== userInfo._id && isFollowing && (
-            <button className="followed-button" disabled>Following</button>
+            <button className="followed-button"onClick={handleUnfollowClick}>Following</button>
           )}
         </div>
       </div>

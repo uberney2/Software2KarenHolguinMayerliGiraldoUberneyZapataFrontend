@@ -29,9 +29,14 @@ export const useFetchFollow = (id, idUserLoged = '0') => {
         setIsLoading(false);
     }
 
+    const changeIsFollowing = async () =>{
+        setIsFollowing(false);
+    }
+
     useEffect(() => {
         getAllFollowers();
         getAllFollowings();
+        changeIsFollowing();
     }, [id]);
 
     return {
@@ -39,6 +44,7 @@ export const useFetchFollow = (id, idUserLoged = '0') => {
         followings,
         isLoading,
         refetchFollowers: getAllFollowers,
+        unFollowedUser: changeIsFollowing,
         isFollowing
     }
 }
