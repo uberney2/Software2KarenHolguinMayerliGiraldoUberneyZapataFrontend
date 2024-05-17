@@ -1,4 +1,5 @@
 export const addProduct = async (token,{
+  userId,
   name,
   description,
   category,
@@ -13,6 +14,7 @@ export const addProduct = async (token,{
       'Authorization': `${token}`
     },
     body: JSON.stringify({
+      userId,
       name,
       description,
       category,

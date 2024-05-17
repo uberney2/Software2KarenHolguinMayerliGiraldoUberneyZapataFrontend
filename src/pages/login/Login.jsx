@@ -27,8 +27,7 @@ export const Login = () => {
         goTo('/home');
       }else{
         console.log('Error en la creacion del usuario');
-        const json = await resp.json();
-        setErrorResponse(json.body.error)
+        setErrorResponse('wrong credentials')
       }
       
     } catch (error) {

@@ -8,7 +8,7 @@ export const Home = () => {
     <ProductProvider>
       <NavbarComponent>
         <div className="container">
-          <h3 className="product-grid-title">Nuevos Productos</h3>
+          <h3 className="product-grid-title">New Products</h3>
           <ProductGrid />
         </div>
       </NavbarComponent>

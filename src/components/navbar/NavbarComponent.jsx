@@ -39,13 +39,13 @@ export const NavbarComponent = ({ children }) => {
             <div className="menu">
               <ul className="nav-links">
                 <li>
-                  <Link to="/home">Inicio</Link>
+                  <Link to="/home">Home</Link>
                 </li>
                 <li>
-                  <Link to="/create-product">Crear Producto</Link>
+                  <Link to="/create-product">Create Product</Link>
                 </li>
                 <li>
-                  <Link to={`/profile/${user._id}`}>Mi perfil</Link>
+                  <Link to={`/profile/${user._id}`}>My Profile</Link>
                 </li>
               </ul>
             </div>

@@ -55,7 +55,7 @@ export const UserProfile = () => {
         <div className="profile-header">
           <img
             className="profile-avatar"
-            src="https://i.pinimg.com/736x/8d/ff/c8/8dffc810ac2226282085257e73a60761.jpg"
+            src={userInfo.avatar}
             alt="User Avatar"
           />
           <h1 className="profile-name">
