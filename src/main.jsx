@@ -7,6 +7,7 @@ import { SignUp } from "./pages/SingUp/SignUp.jsx";
 import { Login } from "./pages/login/Login.jsx";
 import { ProtectedRoute } from "./services/ProtectedRoute";
 import { AuthProvider } from "./components/auth/AuthProvider.jsx";
+import { ProductProvider } from "./context/ProductContext.jsx"; 
 import { ProductDetail } from "./pages/product/ProductDetail/ProductDetail.jsx";
 import { CreateProduct } from "./pages/product/CreateProduct/CreateProduct.jsx";
 import { UserProfile } from "./pages/userProfile/UserProfile.jsx";
@@ -47,7 +48,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <ProductProvider>  {/* Envuelve RouterProvider con ProductProvider */}
+        <RouterProvider router={router} />
+      </ProductProvider>
     </AuthProvider>
   </React.StrictMode>
 );

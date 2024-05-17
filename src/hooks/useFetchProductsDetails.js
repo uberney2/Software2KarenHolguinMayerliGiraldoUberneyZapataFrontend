@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {getProductsDetails} from '../services/getProducts'
+import {getProductDetails} from '../services/getProducts'
 import { useAuth } from '../components/auth/AuthProvider';
 
 export const useFetchProductsDetails = (idProduct) => {
@@ -9,7 +9,7 @@ export const useFetchProductsDetails = (idProduct) => {
 
     const getAllProducts = async () => {
         const token = auth.getToken();
-        const product = await getProductsDetails(idProduct,token);
+        const product = await getProductDetails(idProduct,token);
         setProduct(product);
         setIsLoading(false);
     }
