@@ -11,6 +11,7 @@ import { ProductProvider } from "./context/ProductContext.jsx";
 import { ProductDetail } from "./pages/product/ProductDetail/ProductDetail.jsx";
 import { CreateProduct } from "./pages/product/CreateProduct/CreateProduct.jsx";
 import { UserProfile } from "./pages/userProfile/UserProfile.jsx";
+import { NetworkComponent } from "./pages/network/Network.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/profile/:id",
         element: <UserProfile />,
+      },
+      {
+        path: "/network/",
+        element: <NetworkComponent />,
       }
     ],
   },

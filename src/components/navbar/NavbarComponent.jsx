@@ -45,6 +45,9 @@ export const NavbarComponent = ({ children }) => {
                   <Link to="/create-product">Create Product</Link>
                 </li>
                 <li>
+                  <Link to="/network">My Network</Link>
+                </li>
+                <li>
                   <Link to={`/profile/${user._id}`}>My Profile</Link>
                 </li>
               </ul>
