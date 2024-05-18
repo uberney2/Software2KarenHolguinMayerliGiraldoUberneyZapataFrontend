@@ -1,8 +1,7 @@
-
 import { ProductGridItem } from '../productGridItem/ProductGridItem';
 import './ProductGrid.css';
 
-export const ProductGrid = ({products,isLoading }) => {
+export const ProductGrid = ({ products, isLoading }) => {
   return (
     <div className="product-grid">
       <div className="product-grid-container">
