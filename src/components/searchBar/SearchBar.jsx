@@ -8,7 +8,7 @@ export const SearchBar = ({ onSearch }) => {
   const [rate, setRate] = useState('');
 
   const handleSearch = () => {
-    onSearch({ name, category, tags: tags.split(','), rate });
+    onSearch({ name, tags: tags.split(','), rate });
   };
 
   return (
@@ -18,12 +18,6 @@ export const SearchBar = ({ onSearch }) => {
         placeholder="Product Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="Category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
       />
       <input
         type="text"

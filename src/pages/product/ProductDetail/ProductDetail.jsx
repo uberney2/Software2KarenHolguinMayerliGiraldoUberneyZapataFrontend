@@ -99,6 +99,9 @@ export const ProductDetail = () => {
               <p className="product-description-detail">
                 {detailProduct?.description}
               </p>
+              <p className="product-description-detail">
+                {commentList?.length} Reviews
+              </p>
               <div className="product-rating">
                 <span>Rating: </span>
                 {renderStars(detailProduct?.rate)}
