@@ -2,20 +2,14 @@ import { useEffect, useState } from 'react';
 import { getFollowingsProducts } from '../services/getFollowingsProducts';
 
 export const useFetchFollowingProducts = (token) => {
-  const [products, setProducts] = useState([]);
+  const [followerProducts, setFollowerProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const fetchFollowingProducts = async () => {
     try {
       setIsLoading(true);
-      const followerProducts = await getFollowingsProducts(token);
-
-      // Extraer productos de cada usuario seguido
-      const allProducts = followerProducts.reduce((acc, follower) => {
-        return [...acc, ...follower.user.products];
-      }, []);
-
-      setProducts(allProducts);
+      const data = await getFollowingsProducts(token);
+      setFollowerProducts(data);
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching user products:', error);
@@ -28,7 +22,7 @@ export const useFetchFollowingProducts = (token) => {
   }, [token]);
 
   return {
-    products,
+    followerProducts,
     isLoading,
   };
 };
