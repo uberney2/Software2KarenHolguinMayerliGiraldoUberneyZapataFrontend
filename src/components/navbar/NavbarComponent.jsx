@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../auth/AuthProvider";
 import { SearchBar } from "../searchBar/SearchBar";
@@ -7,7 +7,13 @@ import { useProductContext } from "../../context/ProductContext";
 export const NavbarComponent = ({ children }) => {
   const auth = useAuth();
   const user = auth.getUserInfo();
+  const navigate = useNavigate();
   const { fetchProducts } = useProductContext();
+
+  const handleLogout = () => {
+    auth.logout();
+    navigate("/");
+  };
 
   return (
     <>
@@ -49,6 +55,9 @@ export const NavbarComponent = ({ children }) => {
                 </li>
                 <li>
                   <Link to={`/profile/${user._id}`}>My Profile</Link>
+                </li>
+                <li>
+                  <button className="logout-button" onClick={handleLogout}>Logout</button>
                 </li>
               </ul>
             </div>
