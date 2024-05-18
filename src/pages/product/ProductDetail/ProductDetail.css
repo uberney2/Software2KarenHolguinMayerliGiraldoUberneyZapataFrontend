@@ -124,11 +124,13 @@
 }
 
 .add-comment-title {
+  border-top: 1px inset #d8e1ec52;
   font-family: "Roboto", sans-serif;
   font-size: 24px;
   font-weight: bold;
   color: #333333;
   margin-bottom: 20px;
+  padding-top: 15px
 }
 
 .add-comment-form {
@@ -138,12 +140,14 @@
 }
 
 .comment-textarea {
-  width: 100%;
+  width: 50%;
   padding: 10px;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  outline: none;
+
 }
 
 .rating-input {
@@ -164,11 +168,21 @@
   padding: 5px;
   border: 1px solid #ddd;
   border-radius: 5px;
+  width: 100px;
+  outline: none;
+
 }
 
 .submit-button {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   color: #fff;
-  background-color: #007B
+  background-color: rgba(0, 128, 0, 0.747);
+  width: 25%;
+}
+
+.submit-button:hover {
+  background-color: rgba(0, 128, 0, 0.425);
+
+
 }
