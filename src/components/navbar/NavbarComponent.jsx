@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import './Navbar.css';
-import { useAuth } from '../auth/AuthProvider';
-import { SearchBar } from '../searchBar/SearchBar';
-import { useProductContext } from '../../context/ProductContext';
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+import { useAuth } from "../auth/AuthProvider";
+import { SearchBar } from "../searchBar/SearchBar";
+import { useProductContext } from "../../context/ProductContext";
 
 export const NavbarComponent = ({ children }) => {
   const auth = useAuth();
@@ -14,7 +14,7 @@ export const NavbarComponent = ({ children }) => {
       <header>
         <nav className="navbar">
           <div className="logo">
-            <a href="#">
+            <Link to="/home">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
@@ -32,7 +32,7 @@ export const NavbarComponent = ({ children }) => {
                   ></path>
                 </g>
               </svg>
-            </a>
+            </Link>
           </div>
           {auth.isAuthenticated && <SearchBar onSearch={fetchProducts} />}
           {auth.isAuthenticated ? (

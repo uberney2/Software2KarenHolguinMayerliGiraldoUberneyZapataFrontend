@@ -7,6 +7,8 @@ import { useState } from "react";
 import { followUser } from "../../services/followUser";
 import { unFollowUser } from "../../services/unFollowUser";
 import { FollowersModal } from "../../components/followersModal/FollowersModal";
+import { useFetchUserProducts } from "../../hooks/useFetchUserProducts";
+import { ProductGrid } from "../../components/productGrid/ProductGrid";
 
 export const UserProfile = () => {
   const { id } = useParams();
@@ -15,6 +17,8 @@ export const UserProfile = () => {
   const userInfo = auth.getUserInfo();
   const { followers, followings, refetchFollowers, isFollowing, unFollowedUser } = useFetchFollow(id, auth.getUserInfo()._id);
   const user = location.state?.user || {};
+
+  const { products, isLoading } = useFetchUserProducts(id, auth.getToken());
 
   const [followersModalOpen, setFollowersModalOpen] = useState(false);
   const [followingsModalOpen, setFollowingsModalOpen] = useState(false);
@@ -55,7 +59,7 @@ export const UserProfile = () => {
         <div className="profile-header">
           <img
             className="profile-avatar"
-            src={userInfo.avatar}
+            src={id === userInfo._id ? userInfo.avatar: user.avatar}
             alt="User Avatar"
           />
           <h1 className="profile-name">
@@ -65,7 +69,7 @@ export const UserProfile = () => {
         <div className="profile-info">
           <div className="profile-stats">
             <div className="profile-stat" onClick={handleOpenFollowersModal}>
-              <span className="stat-label">followers</span>
+              <span className="stat-label">Followers</span>
               <span className="stat-value">{followers?.length}</span>
             </div>
             <div className="profile-stat" onClick={handleOpenFollowingsModal}>
@@ -93,8 +97,9 @@ export const UserProfile = () => {
         title="Followings"
         users={formattedFollowings}
       />
-      <div>
-        <label>My Products</label>
+      <div className="user-products">
+        <h2 className="section-title">My Products</h2>
+        <ProductGrid products={products} isLoading={isLoading} />
       </div>
     </NavbarComponent>
   );

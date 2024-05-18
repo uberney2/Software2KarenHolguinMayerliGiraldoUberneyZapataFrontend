@@ -6,7 +6,6 @@ import './home.css';
 
 export const Home = () => {
   const { products, isLoading } = useFetchProducts();
-  console.log(products)
   return (
     <ProductProvider>
       <NavbarComponent>
