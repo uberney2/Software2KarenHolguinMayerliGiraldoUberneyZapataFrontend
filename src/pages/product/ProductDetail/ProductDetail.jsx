@@ -95,8 +95,8 @@ export const ProductDetail = () => {
               />
             </div>
             <div className="product-info">
-              <h1 className="product-name">{detailProduct?.name}</h1>
-              <p className="product-description">
+              <h1 className="product-name-detail">{detailProduct?.name}</h1>
+              <p className="product-description-detail">
                 {detailProduct?.description}
               </p>
               <div className="product-rating">

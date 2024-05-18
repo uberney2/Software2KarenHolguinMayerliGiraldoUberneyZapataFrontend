@@ -41,14 +41,14 @@
   gap: 20px;
 }
 
-.product-name {
+.product-name-detail {
   font-family: "Roboto", sans-serif;
   font-size: 32px;
   font-weight: bold;
   color: #333333;
 }
 
-.product-description {
+.product-description-detail {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   color: #666666;

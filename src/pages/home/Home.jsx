@@ -9,7 +9,7 @@ export const Home = () => {
   return (
     <NavbarComponent>
       <div className="container">
-        <h3 className="product-grid-title">Nuevos Productos</h3>
+        <h3 className="product-grid-title">New Products</h3>
         <ProductGrid products={products} isLoading={isLoading} />
       </div>
     </NavbarComponent>
