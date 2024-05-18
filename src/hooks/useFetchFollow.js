@@ -14,7 +14,6 @@ export const useFetchFollow = (id, idUserLoged = '0') => {
         const token = auth.getToken();
         const followers = await getFollowers(token, id);
         const isFollowed = followers.some(follower => follower._id === idUserLoged)
-        console.log(isFollowed)
         if(isFollowed){
             setIsFollowing(true);
         }

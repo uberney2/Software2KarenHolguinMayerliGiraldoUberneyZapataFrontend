@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
-import './Navbar.css';
-import { useAuth } from '../auth/AuthProvider';
-import { SearchBar } from '../searchBar/SearchBar';
-import { useProductContext } from '../../context/ProductContext';
+import { Link } from "react-router-dom";
+import "./Navbar.css";
+import { useAuth } from "../auth/AuthProvider";
+import { SearchBar } from "../searchBar/SearchBar";
+import { useProductContext } from "../../context/ProductContext";
 
 export const NavbarComponent = ({ children }) => {
   const auth = useAuth();
@@ -14,7 +14,7 @@ export const NavbarComponent = ({ children }) => {
       <header>
         <nav className="navbar">
           <div className="logo">
-            <a href="#">
+            <Link to="/home">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="40"
@@ -32,20 +32,20 @@ export const NavbarComponent = ({ children }) => {
                   ></path>
                 </g>
               </svg>
-            </a>
+            </Link>
           </div>
           {auth.isAuthenticated && <SearchBar onSearch={fetchProducts} />}
           {auth.isAuthenticated ? (
             <div className="menu">
               <ul className="nav-links">
                 <li>
-                  <Link to="/home">Inicio</Link>
+                  <Link to="/home">Home</Link>
                 </li>
                 <li>
-                  <Link to="/create-product">Crear Producto</Link>
+                  <Link to="/create-product">Create Product</Link>
                 </li>
                 <li>
-                  <Link to={`/profile/${user._id}`}>Mi perfil</Link>
+                  <Link to={`/profile/${user._id}`}>My Profile</Link>
                 </li>
               </ul>
             </div>

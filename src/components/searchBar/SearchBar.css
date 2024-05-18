@@ -1,7 +1,7 @@
 .search-bar {
     display: flex;
     gap: 10px;
-    margin: 20px 0;
+    margin: 20px;
   }
   
   .search-bar input {
@@ -18,12 +18,10 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin: 0;
   }
   
   .search-bar button:hover {
     background-color: #ff4a3a;
   }
   
-  button {
-    margin: 0px;
-  }

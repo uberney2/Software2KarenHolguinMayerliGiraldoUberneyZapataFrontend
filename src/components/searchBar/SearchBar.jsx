@@ -15,30 +15,30 @@ export const SearchBar = ({ onSearch }) => {
     <div className="search-bar">
       <input
         type="text"
-        placeholder="Nombre del producto"
+        placeholder="Product Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
       <input
         type="text"
-        placeholder="Categoría"
+        placeholder="Category"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
       />
       <input
         type="text"
-        placeholder="Etiquetas (separadas por comas)"
+        placeholder="Tags (separated by commas)"
         value={tags}
         onChange={(e) => setTags(e.target.value)}
       />
       <input
         type="number"
-        placeholder="Calificación"
+        placeholder="rate"
         value={rate}
         onChange={(e) => setRate(e.target.value)}
       />
    
-      <button onClick={handleSearch}>Buscar</button>
+      <button onClick={handleSearch}>Search</button>
    
   
     </div>

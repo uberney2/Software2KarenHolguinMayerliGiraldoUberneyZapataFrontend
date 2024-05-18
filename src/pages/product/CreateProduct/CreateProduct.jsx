@@ -34,7 +34,9 @@ export const CreateProduct = () => {
     e.preventDefault();
     try {
       const token = auth.getToken()
+      const user = auth.getUserInfo()
       const resp = await addProduct(token,{
+        userId: user._id,
         name,
         description,
         category,
@@ -61,10 +63,10 @@ export const CreateProduct = () => {
       <NavbarComponent>
       <div className="add-product-container">
         <form className="add-product-form" onSubmit={handleSubmit}>
-          <h1>Agregar Producto</h1>
+          <h1>Add Product</h1>
           {errorResponse && <p className="error">{errorResponse}</p>}
 
-          <label>Nombre del Producto</label>
+          <label>Product Name</label>
           <input
             type="text"
             value={name}
@@ -72,13 +74,13 @@ export const CreateProduct = () => {
             required
           />
 
-          <label>Descripción</label>
+          <label>Description</label>
           <textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <label>Categoría</label>
+          <label>Category</label>
           <input
             type="text"
             value={category}
@@ -92,21 +94,21 @@ export const CreateProduct = () => {
             onChange={(e) => setUrl(e.target.value)}
           />
 
-          <label>Imagen</label>
+          <label>Image</label>
           <input
             type="text"
             value={image}
             onChange={(e) => setImage(e.target.value)}
           />
 
-          <label>Etiquetas</label>
+          <label>Tags</label>
           <div className="tags-input-container">
             <input
               type="text"
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' ? (e.preventDefault(), handleAddTag()) : null}
-              placeholder="Presiona Enter para agregar una etiqueta"
+              placeholder="Press Enter to add a label"
             />
             <div className="tags-list">
               {tags.map((tag, index) => (
@@ -117,7 +119,7 @@ export const CreateProduct = () => {
             </div>
           </div>
 
-          <button type="submit">Agregar Producto</button>
+          <button type="submit">Save Product</button>
         </form>
       </div>
       </NavbarComponent>
